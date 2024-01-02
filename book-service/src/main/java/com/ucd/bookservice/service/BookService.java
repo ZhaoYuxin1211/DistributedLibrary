@@ -4,6 +4,7 @@ import com.ucd.bookservice.dao.BookResponse;
 import com.ucd.bookservice.dao.CheckoutRequest;
 import com.ucd.bookservice.dao.ReturnRequest;
 import com.ucd.bookservice.event.CheckoutEvent;
+import com.ucd.bookservice.event.ReturnEvent;
 import com.ucd.bookservice.model.Book;
 import com.ucd.bookservice.model.CheckOut;
 import com.ucd.bookservice.model.Return;
@@ -31,6 +32,7 @@ public class BookService {
     private final CheckoutRepository checkoutRepository;
     private final ReturnRepository returnRepository;
     private final KafkaTemplate<String, CheckoutEvent> checkoutKafkaTemplate;
+    private final KafkaTemplate<String, ReturnEvent> returnKafkaTemplate;
 
     public List<BookResponse> getAllBooks(){
         List<Book> bookList = bookRepository.findAll();
@@ -61,9 +63,9 @@ public class BookService {
                     .build();
             checkoutRepository.save(checkOut);
 
-            //send message to the user that the book has been succussfully checked out
+            //send message to the user that the book has been successfully checked out
             // *asynchronous
-            checkoutKafkaTemplate.send("messageTopic", new CheckoutEvent(checkOut.getId(), checkOut.getUserEmail(), book.getTitle()));
+            checkoutKafkaTemplate.send("checkoutTopic", new CheckoutEvent(checkOut.getId(), checkOut.getUserEmail(), book.getTitle()));
             return true;
         }else {
             log.info("The book is out of stock.");
@@ -88,6 +90,10 @@ public class BookService {
                     .bookId(returnRequest.getBookId())
                     .build();
             returnRepository.save(aReturn);
+
+            //send message to the user that the book has been successfully returned
+            // *asynchronous
+            returnKafkaTemplate.send("returnTopic", new ReturnEvent(aReturn.getId(), aReturn.getUserEmail(),book.getTitle()));
             return true;
         }
     }
