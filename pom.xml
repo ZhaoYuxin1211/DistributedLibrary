@@ -63,17 +63,27 @@
                     </excludes>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>com.google.cloud.tools</groupId>-->
-<!--                <artifactId>jib-maven-plugin</artifactId>-->
-<!--                <version>3.2.1</version>-->
-<!--                <configuration>-->
-<!--                    <from>-->
-<!--                        <image>eclipse-temurin:17.0.4.1_1-jre</image>-->
-<!--                    </from>-->
-<!--                    <to><image>registry.hub.docker.com/saiupadhyayula007/${artifactId}</image></to>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <from>
+                        <image>eclipse-temurin:17.0.4.1_1-jre</image>
+                        <auth>
+                            <username>ashtaroth97</username>
+                            <password>pwdfordocker</password>
+                        </auth>
+                    </from>
+                    <to>
+                        <image>registry.hub.docker.com/ashtaroth97/${project.artifactId}</image>
+                        <auth>
+                            <username>ashtaroth97</username>
+                            <password>pwdfordocker</password>
+                        </auth>
+                    </to>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

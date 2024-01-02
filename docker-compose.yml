@@ -1,6 +1,41 @@
 ---
 version: '3'
 services:
+  postgres-book:
+    container_name: postgres-book
+    image: postgres
+    environment:
+      POSTGRES_DB: book-service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - ./postgres-book:/data/postgres
+    expose:
+      - "5431"
+    ports:
+      - "5431:5431"
+    command: -p 5431
+    restart: unless-stopped
+
+  postgres-review:
+    container_name: postgres-review
+    image: postgres
+    environment:
+      POSTGRES_DB: review-service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - ./postgres-review:/data/postgres
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    command: -p 5432
+    restart: unless-stopped
+
+  # Apache Zookeeper
   zookeeper:
     image: confluentinc/cp-zookeeper:7.0.1
     container_name: zookeeper
@@ -8,6 +43,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
 
+  # Kafka
   broker:
     image: confluentinc/cp-kafka:7.0.1
     container_name: broker
@@ -23,3 +59,78 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+
+  # Eureka server
+  discovery-server:
+    image: ashtaroth97/discovery-server:latest
+    container_name: discovery-server
+    pull_policy: always
+    ports:
+      - "8761:8761"
+
+  # API gateway
+  api-gateway:
+    image: ashtaroth97/api-gateway:latest
+    container_name: api-gateway
+    pull_policy: always
+    ports:
+      - "8181:8080"
+    expose:
+      - "8181"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - discovery-server
+
+  # book-service
+  book-service:
+    container_name: book-service
+    image: ashtaroth97/book-service:latest
+    pull_policy: always
+#    env_file:
+#      - application-docker.properties
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-book:5431/book-service
+    depends_on:
+      - postgres-book
+      - discovery-server
+      - api-gateway
+
+  # message-service
+  message-service:
+    container_name: message-service
+    image: ashtaroth97/message-service:latest
+    pull_policy: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - broker
+      - discovery-server
+      - api-gateway
+
+  # review-service
+  review-service:
+    container_name: review-service
+    image: ashtaroth97/review-service:latest
+    pull_policy: always
+#    env_file:
+#      - application-docker.properties
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-review:5432/review-service
+    depends_on:
+      - postgres-review
+      - discovery-server
+      - api-gateway
+
+  ## Notification-Service Docker Compose Config
+  user-service:
+    container_name: user-service
+    image: ashtaroth97/user-service:latest
+    pull_policy: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - discovery-server
+      - api-gateway

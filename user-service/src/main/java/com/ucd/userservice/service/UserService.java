@@ -1,14 +1,12 @@
 package com.ucd.userservice.service;
 
 import com.ucd.userservice.dto.*;
-import com.ucd.userservice.model.Review;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.Disposable;
+
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
@@ -41,14 +39,6 @@ public class UserService {
         return Arrays.stream(reviewResponses).toList();
     }
 
-//    public boolean checkBookStock(long bookId){
-//        return Boolean.TRUE.equals(webClientBuilder.build().get()
-//                .uri("http://localhost:8081/api/book/stocking",
-//                        uriBuilder -> uriBuilder.queryParam("bookId", bookId).build())
-//                .retrieve()
-//                .bodyToMono(boolean.class)
-//                .block());
-//    }
 
     public List<BookResponse> getAllBooks() {
         BookResponse[] bookResponses = webClientBuilder.build().get()
