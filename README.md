@@ -27,7 +27,7 @@ We faced and overcame several challenges related to system scalability, integrat
 Each team member contributed to various aspects of the project, from system design to specific feature implementation.
    
 ## Project Report
-[Library Management System Repository](https://github.com/ZhaoYuxin1211/DistributedLibrary/edit/main/README.md)
+[Group Project](https://github.com/ZhaoYuxin1211/DistributedLibrary/blob/main/FinalTeamProjectreport.pdf)
 
 
 ## Project Video
