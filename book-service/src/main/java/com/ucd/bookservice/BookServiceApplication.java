@@ -24,10 +24,14 @@ public class BookServiceApplication {
 @Bean
 public CommandLineRunner loadData(BookRepository bookRepository) {
     return args -> {
-        Book book1 = new Book(1,"JavaScript Cookbook", "Luv, Zofia", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin risus tortor, condimentum eget sapien ac, dapibus varius ligula. ", 10, 10, "FE", null);
-        Book book2 = new Book(2, "Become a Guru in JavaScript", "Luv, Lena", "Pellentesque varius aliquam lacus quis rhoncus. Nam a dui lectus. Vestibulum libero elit, ultricies sit amet sagittis eu, molestie at velit. Donec tincidunt tempus magna, quis facilisis libero elementum non.", 15, 15, "FE", null);
-        Book book3 = new Book(3, "Exploring Vue.js", "Luv, Jakub", "Proin at urna faucibus, pretium mi in, dapibus metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam elementum ligula ut vestibulum tincidunt. ", 10, 10, "FE", null);
-        Book book4 = new Book(4, "Advanced Techniques in Big Data", "Luv, Alexander", "Nunc eget lorem ac neque tincidunt mollis. Fusce finibus laoreet nunc nec hendrerit. Curabitur eu placerat urna, sit amet pellentesque enim.", 12, 12, "Data", null);
+        Book book1 = new Book(1,"Yellowface", "R.F. Kuang", "With its totally immersive first-person voice, Yellowface grapples with questions of diversity, racism, and cultural appropriation, as well as the terrifying alienation of social media. R.F. Kuang’s novel is timely, razor-sharp, and eminently readable.", 10, 10, "FE", "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1671336608i/62047984.jpg");
+
+        Book book2 = new Book(2, "Hello Beautiful", "Ann Napolitano", "Vibrating with tenderness, Hello Beautiful is a gorgeous, profoundly moving portrait of what’s possible when we choose to love someone not in spite of who they are, but because of it. ", 15, 15, "FE", "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1687803098i/61771675.jpg");
+
+        Book book3 = new Book(3, "Someone Else's Shoes", "Jojo Moyes", "Proin at urna faucibus, pretium mi in, dapibus metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam elementum ligula ut vestibulum tincidunt. ", 10, 10, "FE", "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1666822989i/62971668.jpg");
+
+        Book book4 = new Book(4, "The Collected Regrets of Clover", "Mikki Brammer", "Probing, clever, and hopeful, The Collected Regrets of Clover is perfect for readers of The Midnight Library and Eleanor Oliphant is Completely Fine as it turns the normally taboo subject of death into a reason to celebrate life.", 12, 12, "Data", "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1663608724i/61214136.jpg");
+
 
         List<Book> bookList = new ArrayList<>();
         bookList.add(book1);

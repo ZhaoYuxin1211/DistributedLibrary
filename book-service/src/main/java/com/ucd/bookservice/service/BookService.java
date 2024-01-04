@@ -116,6 +116,7 @@ public class BookService {
                 .author(book.getAuthor())
                 .category(book.getCategory())
                 .copies(book.getCopies())
+                .copiesAvailable(book.getCopiesAvailable())
                 .description(book.getDescription())
                 .img(book.getImg())
                 .build();
