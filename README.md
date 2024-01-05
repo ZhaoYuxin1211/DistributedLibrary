@@ -1,5 +1,5 @@
 
-# Library Management System [TEAM 77]
+# Library Management System [Group 6]
 
 ## Overview
 The application domain for the system is library management. It focuses on creating a digital library platform where various services related to library operations will interact and function together, such as borrow books, return books, book services, review, and message processing.
