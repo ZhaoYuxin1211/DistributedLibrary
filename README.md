@@ -2,12 +2,10 @@
 # Library Management System [TEAM 77]
 
 ## Overview
-This project develops a comprehensive Library Management System focusing on digital library operations. It's designed using a microservices architecture to streamline user and book management processes.
+The application domain for the system is library management. It focuses on creating a digital library platform where various services related to library operations will interact and function together, such as borrow books, return books, book services, review, and message processing.
 
 ## Features
-- **User Management:** Handle user registrations, logins, and profile management.
-- **Book Services:** Catalog books, manage inventory, and track borrower records.
-- **Review and Message Processing:** Enable users to review books and communicate within the system.
+The application is designed to manage a library system using a microservices architecture, incorporating elements of distributed systems. It handles user management book catalogs, borrower records, inventory, and notifications. Employing Spring Boot and Spring Cloud, the system features service discovery, centralized configuration, and distributed database. This setup, integrated with a distributed system approach, ensures robust and scalable library operations, facilitating both synchronous and asynchronous communications among microservices.
 
 ## Technologies
 - **Back-End:** Spring Boot, Spring Cloud
