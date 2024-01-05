@@ -51,7 +51,7 @@ We faced and overcame several challenges related to system scalability, integrat
 
 
 ## Project Video
-[Video link](https://drive.google.com/file/d/1LXtvWCzfX45gxEginBZkx1R0ZnhF0Zi9/view?usp=sharing)
+[Video link](https://drive.google.com/file/d/1Jg-y6Hhwo--ILkxyk9aGR7yoYPfKEZwR/view?usp=sharing)
 
 
 ## How to run the Application
@@ -59,7 +59,7 @@ First start the back-end server and services. Navigate into the project root fol
 
 ``` docker compose up ```
 
-Then navigate to the react project ([Github link](https://github.com/MiaomiaoShi1004/distributedlibrary)) on your computer to launch the interface. In the React projects root folder run:
+Then navigate to the React project ([Github link](https://github.com/MiaomiaoShi1004/distributedlibrary)) on your computer to launch the interface. In the React projects root folder run:
 
 ``` npm start ```
 
