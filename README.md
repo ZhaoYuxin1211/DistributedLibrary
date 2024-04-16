@@ -36,7 +36,7 @@ We faced and overcame several challenges related to system scalability, integrat
 
 #### [Miaomiao Shi](https://github.com/MiaomiaoShi1004)
 - **Message Service:** Key contributor to the Message Service, managing asynchronous communication and event-driven processes using Kafka. This involved setting up and maintaining message flow for various system events.
-- **Front-end Implementation:** Played a significant role in implementing the front-end components of the system, ensuring seamless user interaction and interface design.
+- **Front-end Implementation:** Played a significant role in implementing the front-end components of the system using react, ensuring seamless user interaction and interface design.
 
 #### [Judith Smolenski](https://github.com/jsmo998)
 - **Review Service:** Led the development of the Review Service, focusing on creating and retrieving book reviews. This involved database interactions and integration with the microservices architecture.
